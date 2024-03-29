@@ -15,11 +15,14 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewModelFactory = MainActivityViewModelFactory(125)
         viewModel = ViewModelProvider(this,viewModelFactory).get(MainActivityViewModel::class.java)
-        binding.resultTextView.text = viewModel.getTotal().toString()
+        viewModel.total.observe(this, {
+            binding.resultTextView.text = it.toString()
+        })
+        //binding.resultTextView.text = viewModel.getTotal().toString() //not needed as Live data is used now
 
         binding.insertButton.setOnClickListener {
             viewModel.setTotal(binding.inputEditText.text.toString().toInt())
-            binding.resultTextView.text = viewModel.getTotal().toString()
+           // binding.resultTextView.text = viewModel.getTotal().toString()
         }
     }
 }
