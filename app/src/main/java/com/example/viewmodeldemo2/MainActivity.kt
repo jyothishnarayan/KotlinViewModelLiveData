@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewModelFactory = MainActivityViewModelFactory(125)
         viewModel = ViewModelProvider(this,viewModelFactory).get(MainActivityViewModel::class.java)
-        viewModel.total.observe(this, {
+        viewModel.totalData.observe(this, {
             binding.resultTextView.text = it.toString()
         })
         //binding.resultTextView.text = viewModel.getTotal().toString() //not needed as Live data is used now

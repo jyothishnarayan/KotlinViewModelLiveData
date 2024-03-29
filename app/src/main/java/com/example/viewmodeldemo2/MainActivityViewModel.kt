@@ -1,13 +1,16 @@
 package com.example.viewmodeldemo2
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MainActivityViewModel(startingTotal : Int) : ViewModel() {
-    var total = MutableLiveData<Int>()
+    private var total = MutableLiveData<Int>()
+    var totalData:LiveData<Int>
 
     init {
         total.value = startingTotal
+        totalData = total
     }
 
 /*    fun getTotal():Int{
